@@ -90,5 +90,5 @@ module async_fifo #(
     assign empty = (read_ptr_gray == write_ptr_gray_sync2);
     //   read = 000       write = 100  - binary
     //   read = 000       write = 110  - gray    => first 2 bits inverted
-    assign full = (write_ptr_gray == {~read_ptr_gray_sync2[1 + (ADDR_WIDTH-1)], read_ptr_gray_sync2[ADDR_WIDTH-1:0]});
+    assign full = (write_ptr_gray == {~read_ptr_gray_sync2[ADDR_WIDTH:ADDR_WIDTH-1], read_ptr_gray_sync2[ADDR_WIDTH-2:0]});
 endmodule
